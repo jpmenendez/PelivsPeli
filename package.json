@@ -1,0 +1,25 @@
+{
+  "name": "pelivspeli",
+  "version": "1.0.0",
+  "description": "PelivsPeli es una app para realizar encuestas entre distintas películas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpmenendez/PelivsPeli.git"
+  },
+  "author": "Juan Pablo Menéndez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpmenendez/PelivsPeli/issues"
+  },
+  "homepage": "https://github.com/jpmenendez/PelivsPeli#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
+}

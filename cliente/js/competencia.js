@@ -1,5 +1,5 @@
 // Esta es la ip y puerto en que necesitamos que esté el backend disponible
-var server = 'http://0.0.0.0:8080';
+var server = 'http://localhost:8080';
 
 function CompetenciasController () {
 
@@ -21,7 +21,8 @@ function CompetenciasController () {
 		// Oculto la plantilla
 		$(".competenciaPlantilla").hide();
 		// Se recorren iterativamente, uno a uno, los resultados de competencias
-		var cantidad = data.length;
+		var cantidad = data.competencias.length;
+		console.log(cantidad);
 		var idColor = 1;
 		var idColorCrece = true;
 		for (i = 0; i < cantidad; i++) {
@@ -29,12 +30,12 @@ function CompetenciasController () {
 			var divCompetencia = $(".competenciaPlantilla").clone().removeClass("competenciaPlantilla");
 			// Se coloca el id correcto (data[i].id) de cada competencia en los links de acciones
 			$(divCompetencia).find('.link').each( function(){
-				$( this ).attr("href",$( this ).attr("href")+data[i].id);
+				$( this ).attr("href",$( this ).attr("href")+data.competencias[i].id);
 			});
 			// Se coloca el nombre de cada competencia
-			$(divCompetencia).find('.titulo').text(data[i].nombre);
+			$(divCompetencia).find('.titulo').text(data.competencias[i].nombre);
 			$(divCompetencia).find('.card').addClass('color'+idColor);
-			
+
 			if (idColorCrece){
 				idColor++;
 			} else {
