@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/competencias', competenciasControlador.obtenerCompetencias);
+app.get('/competencias/:id/peliculas', competenciasControlador.obtenerDosPeliculas);
+app.post('/competencias/:id/voto', competenciasControlador.votarPelicula);
+app.get('/competencias/:id/resultados', competenciasControlador.obtenerResultados);
 
 //seteamos el puerto y el ip en el cual va a escuchar los pedidos la aplicación
 var puerto = '8080';

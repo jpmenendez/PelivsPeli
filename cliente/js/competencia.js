@@ -88,7 +88,7 @@ function CompetenciasController () {
 	},
 	this.cargarOpciones = function (id, opciones){
 		// Se carga el nombre de la competencia en el título de la página
-		$("#nombreCompetencia").text(opciones.competencia);
+		$("#nombreCompetencia").text(opciones.competencia.nombre);
 		// Se recorren las opciones de películas (opciones.peliculas es un array) para votar que retornó la api
 		for (var i = 0; i < opciones.peliculas.length; i++) {
 			// Se selecciona el div que contiene la opción a cargar
@@ -172,20 +172,20 @@ function CompetenciasController () {
 	},
 	this.cargarResultados =  function (id, data){
 		// Se carga el nombre de la competencia en el contenedor del título
-		$("#nombreCompetencia").text(data.competencia);
+		$("#nombreCompetencia").text(data.lasTresMasVotadas.nombre);
 		// Se recorren los resultados (data es un array)
-		for (var i = 0; i < data.resultados.length; i++) {
+		for (var i = 0; i < data.lasTresMasVotadas.peliculas.length; i++) {
 			// Se selecciona el div que contiene la estructura donde cargar el resultado actual
 			var divResultado = "#puesto"+(i+1);
 			// Se carga el valor de pelicula_id obtenido de la opción actual en el objeto con clase idPelicula que se encuentra dentro del divResultado
-			$(divResultado+" .idPelicula").val((data.resultados)[i].pelicula_id);
+			$(divResultado+" .idPelicula").val((data.lasTresMasVotadas.peliculas)[i].pelicula_id);
 			// Se carga el poster de la película
-			$(divResultado+" .poster").attr("src",(data.resultados)[i].poster);
+			$(divResultado+" .poster").attr("src",(data.lasTresMasVotadas.peliculas)[i].poster);
 			// Se carga el título de la película
-			$(divResultado+" .titulo").text((data.resultados)[i].titulo);
+			$(divResultado+" .titulo").text((data.lasTresMasVotadas.peliculas)[i].titulo);
 			// Se carga la cantidad de votor recibidos por la película en esta competencia
-			var votoOVotos = ((data.resultados)[i].votos > 1 ) ? 'VOTOS' : 'VOTO';
-			$(divResultado+" .votos").text((data.resultados)[i].votos + ' ' + votoOVotos);
+			var votoOVotos = ((data.lasTresMasVotadas.peliculas)[i].votos > 1 ) ? 'VOTOS' : 'VOTO';
+			$(divResultado+" .votos").text((data.lasTresMasVotadas.peliculas)[i].cantidad_votos + ' ' + votoOVotos);
   	}
 		for(i; i < 3; i++){
 			var divResultado = "#puesto"+(i+1);
