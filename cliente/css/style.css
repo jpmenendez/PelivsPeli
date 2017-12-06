@@ -105,6 +105,20 @@ header .logo span:last-child {
 	display: inline-block;
 }
 
+.competencias .competencia .info {
+	position: absolute;
+	bottom: 0px;
+	padding: 15px 25px 70px;
+}
+
+.competencias .competencia .info h3 {
+	font-size: 11px;
+	margin-top: 8px;
+	text-transform: none;
+	display: block;
+}
+
+
 .competencias .competencia .actions {
 	position: absolute;
 	bottom: 0px;

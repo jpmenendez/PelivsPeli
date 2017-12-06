@@ -34,6 +34,18 @@ function CompetenciasController () {
 			});
 			// Se coloca el nombre de cada competencia
 			$(divCompetencia).find('.titulo').text(data.competencias[i].nombre);
+			// Se coloca el género de cada competencia
+			if (data.competencias[i].genero != null) {
+				$(divCompetencia).find('.genero').text("Género: " + data.competencias[i].genero);
+			}
+			// Se coloca el director de cada competencia
+			if (data.competencias[i].director != null) {
+				$(divCompetencia).find('.director').text("Director: " + data.competencias[i].director);
+			}
+			// Se coloca el actor de cada competencia
+			if (data.competencias[i].actor != null) {
+				$(divCompetencia).find('.actor').text("Actor: " + data.competencias[i].actor);
+			}
 			$(divCompetencia).find('.card').addClass('color'+idColor);
 
 			if (idColorCrece){
@@ -65,14 +77,26 @@ function CompetenciasController () {
 	this.cargarCompetencia = function (id, data){
 		// data es el detalle de una competencia que retornó la api (un objeto json)
 		// Se coloca en el elemento correspondiente el nombre de la competencia
-		$(".nombre").text(data.nombre);
-		$(".nombre").val(data.nombre);
-		// Se coloca en el elemento correspondiente el género de películas de la competencia, si es que hay alguno
-		$(".genero").text(data.genero_nombre);
-		// Se coloca en el elemento correspondiente el actor/actriz de la competencia, si es que hay alguno/a
-		$(".actor").text(data.actor_nombre);
-		// Se coloca en el elemento correspondiente el director/a de la competencia, si es que hay alguno/a
-		$(".director").text(data.director_nombre);
+		$(".nombre").text(data.competencia.nombre);
+		$(".nombre").val(data.competencia.nombre);
+		// Se coloca en el elemento correspondiente el género de películas de la competencia, si es es igual a 0 se le asigna Todos
+		if (data.competencia.genero_nombre == null) {
+			$(".genero").text("Todos");
+		}else{
+			$(".genero").text(data.competencia.genero_nombre);
+		}
+		// Se coloca en el elemento correspondiente el actor/actriz de la competencia, si es es igual a 0 se le asigna Todos
+		if (data.competencia.genero_nombre == null) {
+			$(".actor").text("Todos");
+		}else{
+			$(".actor").text(data.competencia.actor_nombre);
+		}
+		// Se coloca en el elemento correspondiente el director/a de la competencia, si es es igual a 0 se le asigna Todos
+		if (data.competencia.genero_nombre == null) {
+			$(".director").text("Todos");
+		}else{
+			$(".director").text(data.competencia.director_nombre);
+		}
 	},
 
 	// Esta método obtiene y carga las opciones de películas para votar
@@ -123,8 +147,8 @@ function CompetenciasController () {
 		    	// Se carga la opción "sin seleccionar" que corresponde a todos los géneros
 		    	$("#genero").append("<option value='0'>Todos</option>");
 		    	// Se recorren y cargan uno a uno los géneros retornados por el backend (data es un array de objetos json)
-		    	for (i = 0; i < data.length; i++) {
-		    		$("#genero").append("<option value='"+data[i].id+"'>"+data[i].nombre+"</option>");
+		    	for (i = 0; i < data.generos.length; i++) {
+		    		$("#genero").append("<option value='"+data.generos[i].id+"'>"+data.generos[i].nombre+"</option>");
 		    	}
 		    });
 	},
@@ -139,8 +163,8 @@ function CompetenciasController () {
 		    	// Se carga la opción "sin seleccionar" que corresponde a todos/as los/as directores/as
 		    	$("#director").append("<option value='0'>Todos/as</option>");
 		    	// Se recorren y cargan uno/a a uno/a los/as directores/as retornados por el backend (data es un array de objetos json)
-		    	for (i = 0; i < data.length; i++) {
-		    		$("#director").append("<option value='"+data[i].id+"'>"+data[i].nombre+"</option>");
+		    	for (i = 0; i < data.directores.length; i++) {
+		    		$("#director").append("<option value='"+data.directores[i].id+"'>"+data.directores[i].nombre+"</option>");
 		    	}
 		    });
 	},
@@ -153,9 +177,9 @@ function CompetenciasController () {
 		    	$("#actor").empty();
 		    	// Se carga la opción "sin seleccionar" que corresponde a todos/as los/as actores/actrices
 		    	$("#actor").append("<option value='0'>Todos/as</option>");
-		    	for (i = 0; i < data.length; i++) {
+		    	for (i = 0; i < data.actores.length; i++) {
 		    	// Se recorren y cargan uno/a a uno/a los/as actores/actrices retornados por el backend (data es un array de objetos json)
-		    		$("#actor").append("<option value='"+data[i].id+"'>"+data[i].nombre+"</option>");
+		    		$("#actor").append("<option value='"+data.actores[i].id+"'>"+data.actores[i].nombre+"</option>");
 		    	}
 		    });
 	},

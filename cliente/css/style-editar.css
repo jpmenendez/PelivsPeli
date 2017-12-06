@@ -34,7 +34,7 @@ form input[type="text"], form select {
 	padding: 0 8px;
 	font-size: 15px;
 	line-height: 26px;
-	background-color: transparent;
+	background-color: #2D3E52;
 	min-width: 40%;
 	margin-bottom: 5px;
 	border-radius: 0;
