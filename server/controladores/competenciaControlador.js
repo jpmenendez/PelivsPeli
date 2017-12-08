@@ -1,4 +1,4 @@
-var con = require('../lib/conexionbd');
+var con = require('../conexionbd');
 
 //Obtiene todas las competencias
 function obtenerCompetencias(req, res){
@@ -7,6 +7,7 @@ function obtenerCompetencias(req, res){
             " director ON director_id= director.id LEFT JOIN actor ON actor_id= actor.id;"
   con.query(sql, function(error, resultado, fields){
     if (error) {
+      console.log(error)
         return res.status(404).send("Hubo un error en la consulta");
     }
     var response = {

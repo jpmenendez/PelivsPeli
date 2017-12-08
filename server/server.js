@@ -1,9 +1,9 @@
 //paquetes necesarios para el proyecto
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var competenciasControlador = require('./controladores/competenciaControlador');
-
 
 var app = express();
 
